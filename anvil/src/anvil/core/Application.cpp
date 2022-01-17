@@ -12,13 +12,13 @@ namespace Anvil
   Application::Application(const std::string& name)
     : m_AppName(name)
   {
+    AV_CORE_ASSERT(s_Instance == nullptr, "Application already instantiated");
+
     s_Instance = this;
   }
 
   void Application::Initialize()
   {
-    // Initialize logger class
-    Log::initialize();
   }
 
   void Application::Run()
