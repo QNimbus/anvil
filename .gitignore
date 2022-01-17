@@ -1,0 +1,12 @@
+﻿# Build
+_bin/
+_obj/
+
+# Visual Studio
+.vs
+*.sln
+*.vcxproj
+*.vcxproj.*
+
+# GNU Make
+Makefile
