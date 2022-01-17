@@ -15,15 +15,24 @@ namespace Anvil
     s_Instance = this;
   }
 
-  void Application::run()
+  void Application::Initialize()
   {
+    // Initialize logger class
+    Log::initialize();
+  }
+
+  void Application::Run()
+  {
+    AV_CORE_TRACE("Starting {0}...", this->m_AppName);
     while (m_Running) {
       
     }
   }
 
-  void Application::close()
+  void Application::Close()
   {
+    AV_CORE_TRACE("Stopping {0}...", this->m_AppName);
+
     m_Running = false;
   }
 }

@@ -17,8 +17,9 @@ namespace Anvil
     Application& operator=(Application&&)      = delete;
 
     // Member methods
-    void run();
-    void close();
+    void Initialize();
+    void Run();
+    void Close();
 
   protected:
     Application(const std::string& name = "Anvil app");

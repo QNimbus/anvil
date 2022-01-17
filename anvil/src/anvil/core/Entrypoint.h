@@ -7,8 +7,11 @@ int main(int argc, char* argv[])
   // Create heap allocated application object
   auto app = Anvil::Create();
 
+  // Run application initialization
+  app->Initialize();
+
   // Main application loop
-  app->run();
+  app->Run();
 
   // Destroy heap allocated application object
   delete app;
