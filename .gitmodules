@@ -1,0 +1,3 @@
+[submodule "anvil/vendor/spdlog"]
+	path = anvil/vendor/spdlog
+	url = git@github.com:QNimbus/spdlog.git

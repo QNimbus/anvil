@@ -1,15 +1,20 @@
 #pragma once
 
-#include "avpch.h"
+extern Anvil::Application* Anvil::Create();
 
-#include "anvil/core/Application.h"
-
-int main(int argc, char* argv[]) {
-  std::cout << "Entrypoint" << std::endl;
-
+int main(int argc, char* argv[])
+{
+  // Create heap allocated application object
   auto app = Anvil::Create();
 
-  app->run();
+  // Run application initialization
+  app->Initialize();
+
+  // Main application loop
+  app->Run();
+
+  // Destroy heap allocated application object
+  delete app;
 
   return 0;
 }
