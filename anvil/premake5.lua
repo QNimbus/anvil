@@ -8,8 +8,8 @@ project "Anvil"
   language "C++"                                                    -- https://premake.github.io/docs/language
   cppdialect "C++17"                                                -- https://premake.github.io/docs/cppdialect
 
-  targetdir ("%{wks.location}/_bin/" .. outputdir)
-  objdir    ("%{wks.location}/_obj/" .. outputdir)
+  targetdir ("%{wks.location}/_bin/" .. outputdir .. "/%{prj.name}")
+  objdir    ("%{wks.location}/_obj/" .. outputdir .. "/%{prj.name}")
 
   pchheader "avpch.h"
   pchsource "%{prj.location}/src/avpch.cpp"

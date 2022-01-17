@@ -8,8 +8,8 @@ project "Sandbox"
   language "C++"                                                    -- https://premake.github.io/docs/language
   cppdialect "C++17"                                                -- https://premake.github.io/docs/cppdialect
 
-  targetdir ("%{wks.location}/_bin/" .. outputdir)
-  objdir    ("%{wks.location}/_obj/" .. outputdir)
+  targetdir ("%{wks.location}/_bin/" .. outputdir .. "/%{prj.name}")
+  objdir    ("%{wks.location}/_obj/" .. outputdir .. "/%{prj.name}")
 
   pchheader "sbpch.h"
   pchsource "%{prj.location}/src/sbpch.cpp"
