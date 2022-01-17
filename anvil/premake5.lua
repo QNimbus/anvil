@@ -28,6 +28,7 @@ project "Anvil"
   includedirs                                                       -- https://premake.github.io/docs/includedirs
   {
     "src/",
+    "%{IncludeDir.spdlog}/",
   }
 
   defines                                                           -- https://premake.github.io/docs/defines

@@ -1,10 +1,11 @@
 #include "sbpch.h"
-
-#include "anvil/core/Entrypoint.h"
+// -- Entry Point ---------
+#include <anvil/core/Entrypoint.h>
+// -- Entry Point ---------
 
 namespace Anvil
 {
-  class SandboxApplication : public Anvil::Application
+  class SandboxApplication : public Application
   {
   public:
     SandboxApplication(const std::string& name)

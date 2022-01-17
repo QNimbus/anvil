@@ -29,6 +29,8 @@ project "Sandbox"
   {
     "src/",
     "%{wks.location}/anvil/src",
+
+    "%{IncludeDir.spdlog}/",
   }
 
   defines                                                           -- https://premake.github.io/docs/defines
