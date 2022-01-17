@@ -15,6 +15,9 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "anvil/core/Log.h"
+#include "anvil/core/Type.h"
+
 #ifdef AV_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif

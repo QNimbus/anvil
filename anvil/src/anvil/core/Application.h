@@ -21,6 +21,9 @@ namespace Anvil
     void Run();
     void Close();
 
+    void PushLayer(Layer* layer);
+    void PushOverlay(Layer* layer);
+
   protected:
     Application(const std::string& name = "Anvil app");
 
@@ -28,6 +31,10 @@ namespace Anvil
     std::string m_AppName;
     bool m_Running = true;
 
+    // Overlay and regular layers
+    LayerStack m_LayerStack;
+
+    // Only one application instance allowed
     static Application* s_Instance;
   };
 

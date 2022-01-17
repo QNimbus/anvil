@@ -19,21 +19,38 @@ namespace Anvil
 
   void Application::Initialize()
   {
+    AV_CORE_TRACE("Initializing - {0}", this->m_AppName);
   }
 
   void Application::Run()
   {
-    AV_CORE_TRACE("Starting {0}...", this->m_AppName);
+    AV_CORE_TRACE("Starting application loop - {0}", this->m_AppName);
+
     while (m_Running) {
-      
+      // Update layers from back to front
+      std::for_each(m_LayerStack.rbegin(), m_LayerStack.rend(), [](const Layer* layer) {
+        layer->OnUpdate();
+        });
     }
+
+    AV_CORE_TRACE("Stopping application loop - {0}", this->m_AppName);
   }
 
   void Application::Close()
   {
-    AV_CORE_TRACE("Stopping {0}...", this->m_AppName);
+    AV_CORE_TRACE("Stopping - {0}", this->m_AppName);
 
     m_Running = false;
+  }
+
+  void Application::PushLayer(Layer* layer)
+  {
+    m_LayerStack.PushLayer(layer);
+  }
+
+  void Application::PushOverlay(Layer* layer)
+  {
+    m_LayerStack.PushOverlay(layer);
   }
 }
 
