@@ -1,45 +1,58 @@
 #pragma once
 
-#include "Anvil.h"
+#include "anvil/core/Core.h"
+#include "anvil/core/Layer.h"
+#include "anvil/core/LayerStack.h"
+#include "anvil/event/EventBus.h"
+#include "anvil/event/WindowEvent.h"
 
 namespace Anvil
 {
-  class Application
-  {
-  public:
-    // Constructors & Destructor
-    virtual ~Application() = default;
+    using namespace Events;
 
-    // Disable copy and move
-    Application(const Application& other) = delete;
-    Application(Application&& other)      = delete;
-    Application& operator=(const Application&) = delete;
-    Application& operator=(Application&&)      = delete;
+    class Application
+    {
+    public:
+        // Constructors & Destructor
+        virtual ~Application() = default;
 
-    // Member methods
-    void Initialize();
-    void Run();
-    void Close();
+        // Disable copy and move
+        Application(const Application& other) = delete;
+        Application(Application&& other) = delete;
+        Application& operator=(const Application&) = delete;
+        Application& operator=(Application&&) = delete;
 
-    void PushLayer(Layer* layer);
-    void PushOverlay(Layer* layer);
+        // Member methods
+        void Initialize();
+        void Run();
+        void Shutdown();
 
-  protected:
-    Application(const std::string& name = "Anvil app");
+        static Application* Get() { return s_Instance; }
 
-  private:
-    std::string m_AppName;
-    bool m_Running = true;
+        void PushLayer(Layer* layer);
+        void PushOverlay(Layer* layer);
 
-    // Overlay and regular layers
-    LayerStack m_LayerStack;
+        // Event handlers{};
+        void onEvent(const Event& event);
+        void onWindowClose(const WindowCloseEvent& event) { event.handled = true; m_Running = false; };
 
-    // Only one application instance allowed
-    static Application* s_Instance;
-  };
+    protected:
+        // Disable direct instantiation
+        Application(const std::string& name = "Anvil app");
 
-  // The method Anvil::Create() needs to be implemented by the client code
-  Application* Create();
+    private:
+        std::string m_AppName;
+        bool m_Running = true;
+
+        // Overlay and regular layers
+        LayerStack m_LayerStack;
+
+        // Only one application instance allowed
+        static Application* s_Instance;
+    };
+
+    // The method Anvil::Create() needs to be implemented by the client code
+    Application* Create();
 }
 
 

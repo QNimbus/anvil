@@ -13,7 +13,9 @@ namespace Anvil
   void LayerStack::PushLayer(Layer* layer)
   {
     m_Stack.emplace(m_Stack.begin() + m_LayerIndex++, layer);
-    layer->OnAttach();
+
+    // Call layer onAttach event handler
+    layer->onAttach();
   }
 
   bool LayerStack::PopLayer(Layer* layer)
@@ -25,7 +27,9 @@ namespace Anvil
     if (it != m_Stack.begin() + m_LayerIndex) {
       --m_LayerIndex;
       m_Stack.erase(it);
-      layer->OnDetach();
+
+      // Call layer onDetach event handler
+      layer->onDetach();
       return true;
     }
     else {
@@ -36,7 +40,9 @@ namespace Anvil
   void LayerStack::PushOverlay(Layer* overlay)
   {
     m_Stack.emplace_back(overlay);
-    overlay->OnAttach();
+
+    // Call layer onAttach event handler
+    overlay->onAttach();
   }
 
   bool LayerStack::PopOverlay(Layer* overlay)
@@ -47,7 +53,9 @@ namespace Anvil
     // If iterator not equal to end() then layer was found
     if (it != m_Stack.end()) {
       m_Stack.erase(it);
-      overlay->OnDetach();
+
+      // Call layer onDetach event handler
+      overlay->onDetach();
       return true;
     }
     else {

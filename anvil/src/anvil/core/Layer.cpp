@@ -6,26 +6,26 @@ namespace Anvil
   Layer::Layer(const std::string& name)
     : m_Name(name)
   {
-    AV_CORE_WARN("Constructing new layer '{0}'", m_Name);
+    AV_CORE_TRACE("Constructing new layer '{0}'", m_Name);
   }
 
   Layer::~Layer()
   {
-    AV_CORE_WARN("Destructing layer '{0}'", m_Name);
+    AV_CORE_TRACE("Destructing layer '{0}'", m_Name);
   }
 
-  void Layer::OnAttach() const
+  void Layer::onAttach()
   {
-    AV_CORE_TRACE("Layer {0} :: OnAttach()", m_Name);
+    AV_CORE_TRACE("Layer {0} :: onAttach()", m_Name);
   }
 
-  void Layer::OnDetach() const
+  void Layer::onDetach()
   {
-    AV_CORE_TRACE("Layer {0} :: OnDetach()", m_Name);
+    AV_CORE_TRACE("Layer {0} :: onDetach()", m_Name);
   }
 
-  void Layer::OnUpdate() const
+  void Layer::onUpdate()
   {
-    AV_CORE_TRACE("Layer {0} :: OnUpdate()", m_Name);
+    AV_CORE_TRACE("Layer {0} :: onUpdate()", m_Name);
   }
 }

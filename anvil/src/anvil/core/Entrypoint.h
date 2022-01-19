@@ -16,6 +16,9 @@ int main(int argc, char* argv[])
   // Main application loop
   app->Run();
 
+  // Application shutdown
+  app->Shutdown();
+
   // Destroy heap allocated application object
   delete app;
 

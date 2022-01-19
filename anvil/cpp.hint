@@ -1,0 +1,5 @@
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define EVENT_CLASS_CATEGORY(category) uint32_t GetCategoryFlags() const override { return category; };
+#define EVENT_CLASS_TYPE(type) std::string GetName() const override { return #type; }; static EventType GetEventTypeStatic() { return EventType::type; }; EventType GetEventType() const override { return GetEventTypeStatic(); };
