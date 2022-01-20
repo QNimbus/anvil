@@ -1,7 +1,5 @@
 #pragma once
 
-#include "anvil/core/Core.h"
-
 #include <filesystem>
 
 #define AV_EXPAND_MACRO(x) x
