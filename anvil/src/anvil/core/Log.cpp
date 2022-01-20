@@ -9,7 +9,7 @@ namespace Anvil
   void Log::initialize()
   {
     // Setup formatting (see: https://github.com/gabime/spdlog/wiki/3.-Custom-formatting)
-    spdlog::set_pattern("%^[%T] %n: %v%$");
+    spdlog::set_pattern("%^[%T]:%n:%-8l| %v%$");
 
     Log::s_CoreLogger = spdlog::stdout_color_mt("ANVIL");
     Log::s_CoreLogger->set_level(spdlog::level::trace);

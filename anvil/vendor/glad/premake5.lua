@@ -1,37 +1,29 @@
--- anvil/premake5.lua
+-- anvil/vendor/glad/premake5.lua
 
-project "Anvil"
+project "glad"
 
   kind "StaticLib"                                                  -- https://premake.github.io/docs/kind
   staticruntime "off"                                               -- https://premake.github.io/docs/staticruntime
 
-  language "C++"                                                    -- https://premake.github.io/docs/language
-  cppdialect "C++17"                                                -- https://premake.github.io/docs/cppdialect
+  language "C"                                                      -- https://premake.github.io/docs/language
 
   targetdir ("%{wks.location}/_bin/" .. outputdir .. "/%{prj.name}")
   objdir    ("%{wks.location}/_obj/" .. outputdir .. "/%{prj.name}")
 
-  pchheader "avpch.h"
-  pchsource "%{prj.location}/src/avpch.cpp"
-
   links                                                             -- https://premake.github.io/docs/links
   {
-    "GLFW",
-    "glad",
+
   }
 
   files                                                             -- https://premake.github.io/docs/files
   {
-    "src/**.h",
-    "src/**.cpp",
+    "**.h",
+    "**.c",
   }
 
   includedirs                                                       -- https://premake.github.io/docs/includedirs
   {
-    "src/",
-    "%{IncludeDir.spdlog}",
-    "%{IncludeDir.GLFW}",
-    "%{IncludeDir.glad}",
+    "include"
   }
 
   defines                                                           -- https://premake.github.io/docs/defines
@@ -41,23 +33,23 @@ project "Anvil"
 
   -- https://premake.github.io/docs/filter/
   filter { "system:windows" }
-    defines { "AV_PLATFORM_WINDOWS" }
+    defines { }
 
   filter { "system:linux"}
-    defines { "AV_PLATFORM_LINUX" }
+    defines { }
 
   filter { "configurations:Debug" }
-    defines { "AV_DEBUG" }
+    defines { }
     symbols "on"                                                    -- https://premake.github.io/docs/symbols/
     runtime "Debug"                                                 -- https://premake.github.io/docs/runtime
 
   filter { "configurations:Release" }
-    defines { "AV_RELEASE" }
+    defines { }
     optimize "on"                                                   -- https://premake.github.io/docs/optimize
     runtime "Release"                                               -- https://premake.github.io/docs/runtime
 
   filter { "configurations:Dist" }
-    defines { "AV_DIST" }
+    defines { }
     optimize "full"                                                 -- https://premake.github.io/docs/optimize
     runtime "Release"                                               -- https://premake.github.io/docs/runtime
 

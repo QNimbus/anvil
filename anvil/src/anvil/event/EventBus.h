@@ -81,7 +81,7 @@ namespace Anvil::Events
         EventBus& operator=(EventBus&&) = delete;
 
         // Singleton instance()
-        static auto& instance() {
+        static EventBus& instance() {
             static EventBus eventBus;
             return eventBus;
         }
@@ -109,7 +109,7 @@ namespace Anvil::Events
         template<typename EventType>
         void Publish(const EventType& event) {
             // When accessing non-existing key in std::map it will create an empty entry for key
-            auto eventHandlers = m_EventSubscribers[typeid(EventType)];
+            auto eventHandlers = m_EventSubscribers[typeid(event).name()];
 
             // No event handlers found, return
             if (!eventHandlers)
@@ -119,18 +119,18 @@ namespace Anvil::Events
             for (auto& eventHandler : *eventHandlers) {
                 eventHandler->exec(event);
             }
-
         }
 
         template<typename T, typename EventType>
         void Subscribe(T* instance, void (T::* method)(const EventType&)) {
           // Get event handlers for current EventType
-            EventHandlerList* eventHandlers = m_EventSubscribers[typeid(EventType)];
+            const char* type = typeid(EventType).name();
+            EventHandlerList* eventHandlers = m_EventSubscribers[type];
 
             // First time initialization (no previous event handlers)
             if (eventHandlers == nullptr) {
                 eventHandlers = new EventHandlerList();
-                m_EventSubscribers[typeid(EventType)] = eventHandlers;
+                m_EventSubscribers[type] = eventHandlers;
             }
 
             // Append event handler function to (the back of) the list
@@ -141,6 +141,6 @@ namespace Anvil::Events
         EventBus() = default;
 
     private:
-        std::map<std::type_index, EventHandlerList*> m_EventSubscribers;
+        std::map<const char*, EventHandlerList*> m_EventSubscribers;
     };
 }
