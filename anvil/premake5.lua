@@ -39,9 +39,11 @@ project "Anvil"
   -- https://premake.github.io/docs/filter/
   filter { "system:windows" }
     defines { "AV_PLATFORM_WINDOWS" }
+    buildoptions { "/permissive-" }
 
   filter { "system:linux"}
     defines { "AV_PLATFORM_LINUX" }
+    buildoptions { "-Wpedantic" }
 
   filter { "configurations:Debug" }
     defines { "AV_DEBUG" }
