@@ -1,3 +1,6 @@
 [submodule "anvil/vendor/spdlog"]
 	path = anvil/vendor/spdlog
 	url = git@github.com:QNimbus/spdlog.git
+[submodule "anvil/vendor/GLFW"]
+	path = anvil/vendor/GLFW
+	url = git@github.com:QNimbus/glfw.git

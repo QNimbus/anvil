@@ -21,7 +21,8 @@ workspace "Anvil"
 
   group "Dependencies"
 
-    -- include "anvil/vendor/GLFW"
+    include "anvil/vendor/GLFW"
+    include "anvil/vendor/glad"
 
   group ""
 

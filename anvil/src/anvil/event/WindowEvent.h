@@ -37,7 +37,7 @@ namespace Anvil::Events
         WindowFocusLostEvent() {};
 
         EVENT_CLASS_TYPE(WindowFocusLost)
-        EVENT_CLASS_CATEGORY(EventCategory::EventCategoryWindow)
+        EVENT_CLASS_CATEGORY(EventCategory::EventCategoryWindow | EventCategory::EventCategoryApplication)
 
     protected:
     };
@@ -49,7 +49,7 @@ namespace Anvil::Events
         WindowFocusEvent() {};
 
         EVENT_CLASS_TYPE(WindowFocus)
-            EVENT_CLASS_CATEGORY(EventCategory::EventCategoryWindow)
+        EVENT_CLASS_CATEGORY(EventCategory::EventCategoryWindow)
 
     protected:
     };

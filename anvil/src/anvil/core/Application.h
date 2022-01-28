@@ -2,13 +2,13 @@
 
 #include "anvil/core/Core.h"
 #include "anvil/core/Layer.h"
+#include "anvil/core/Window.h"
 #include "anvil/core/LayerStack.h"
 #include "anvil/event/EventBus.h"
 #include "anvil/event/WindowEvent.h"
 
 namespace Anvil
 {
-    using namespace Events;
 
     class Application
     {
@@ -27,14 +27,19 @@ namespace Anvil
         void Run();
         void Shutdown();
 
-        static Application* Get() { return s_Instance; }
-
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* layer);
 
+        static Application* Get() { return s_Instance; }
+
+        // Cached access to event bus
+        const Events::EventBus& GetEventBus() { return m_EventBus; }
+
         // Event handlers{};
-        void onEvent(const Event& event);
-        void onWindowClose(const WindowCloseEvent& event) { event.handled = true; m_Running = false; };
+        template <typename EventType>
+        void onEvent(const EventType& event);
+        void onWindowClose(const Events::WindowCloseEvent& event) { event.handled = true; m_Running = false; };
+        void onWindowResize(const Events::WindowResizeEvent& event) { event.handled = true; };
 
     protected:
         // Disable direct instantiation
@@ -44,8 +49,14 @@ namespace Anvil
         std::string m_AppName;
         bool m_Running = true;
 
+        // Reference counted pointer to Window object
+        Ref<Window> m_Window;
+
         // Overlay and regular layers
         LayerStack m_LayerStack;
+
+        // Cached access to event bus
+        EventBus& m_EventBus;
 
         // Only one application instance allowed
         static Application* s_Instance;
