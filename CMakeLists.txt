@@ -6,12 +6,12 @@ cmake_minimum_required(VERSION 3.20...3.22)
 # and the targets that do not specify a standard.
 # If not set, the latest supported standard for your compiler is used
 # You can later set fine-grained standards for each target using `target_compile_features`
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20) # Set to '23' to have -std:c++latest as compiler flag (to prevent issue with c++20 and clang-tidy)
 
 # Add project_options v0.1.1 - https://github.com/qnimbus/cpp-project-options
 # See: https://cmake.org/cmake/help/latest/module/FetchContent.html
 include(FetchContent)
-FetchContent_Declare(_project_options URL https://github.com/QNimbus/cpp-project-options/archive/refs/tags/v0.1.2.zip)
+FetchContent_Declare(_project_options URL https://github.com/QNimbus/cpp-project-options/archive/refs/tags/v0.1.3.zip)
 FetchContent_MakeAvailable(_project_options)
 include(${_project_options_SOURCE_DIR}/Index.cmake)
 
@@ -28,6 +28,8 @@ project(anvil
 # This overwrites `project_options` and sets `project_warnings`
 # uncomment the options to enable them:
 project_options(
+      WARNINGS_AS_ERRORS
+   #  ENABLE_CLANG_TIDY         # Does not work with compilers other than clang
       ENABLE_PCH
       ENABLE_CONAN
       PCH_HEADERS
