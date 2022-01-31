@@ -1,10 +1,10 @@
-﻿---
+---
 BasedOnStyle: LLVM
 AlignAfterOpenBracket: Align
 AlignConsecutiveMacros: 'true'
 AlignConsecutiveAssignments: 'true'
 AlignConsecutiveDeclarations: 'true'
-AlignEscapedNewlines: Right
+AlignEscapedNewlines: Left
 AlignOperands: 'true'
 AlignTrailingComments: 'true'
 AllowAllArgumentsOnNextLine: 'true'
@@ -18,11 +18,12 @@ AllowShortLambdasOnASingleLine: All
 AlwaysBreakTemplateDeclarations: 'Yes'
 BinPackArguments: 'false'
 BinPackParameters: 'false'
-BreakBeforeBraces: WebKit
+BreakBeforeBraces: Attach
 BreakBeforeTernaryOperators: 'true'
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterColon
 CompactNamespaces: 'true'
+ColumnLimit: 160
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 Cpp11BracedListStyle: 'true'
 DerivePointerAlignment: 'true'

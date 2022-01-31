@@ -45,6 +45,7 @@
 
 namespace Anvil
 {
+
   class Log
   {
   public:
@@ -61,4 +62,5 @@ namespace Anvil
     static std::shared_ptr<spdlog::logger> s_CoreLogger;
     static std::shared_ptr<spdlog::logger> s_ClientLogger;
   };
+
 }
